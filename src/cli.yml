@@ -1,0 +1,20 @@
+name: Advent of Code 2020
+version: "0.01"
+about: My advent of code for 2020
+author: Lucas P. <lucas.parsy@epitech.eu>
+subcommands:
+    - all:
+        about: execute all exercises
+    - list:
+        about: list all implemented exercises
+    - interactives:
+        about: list all interactive exercices (like games)
+    - day:
+        about: "execute a specific day and part (ex: day 1 2)"
+        args:
+            - number:
+                help: "the day of the exercise"
+                required : true
+            - part:
+                required : true
+                possible_values: [ "1", "2" ]

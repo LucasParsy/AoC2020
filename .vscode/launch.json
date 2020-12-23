@@ -1,0 +1,23 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "preLaunchTask": "Cargo build",
+        "type": "lldb",
+        "request": "launch",
+        "name": "Launch",
+        "args": [],
+        "program": "${workspaceFolder}/target/debug/${workspaceFolderBasename}",
+        "windows": {
+            "program": "${workspaceFolder}/target/debug/${workspaceFolderBasename}.exe"
+        },
+        "cwd": "${workspaceFolder}",
+        "stopOnEntry": false,
+        "sourceLanguages": ["rust"],
+        "sourceMap": {
+          "/rustc/*": "${env:HOME}/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust"
+        }
+      },
+    ]
+  }
+  

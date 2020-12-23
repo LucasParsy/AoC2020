@@ -1,0 +1,28 @@
+{
+    "tasks": [
+        {
+            "label": "release run",
+            "command": "cargo",
+            "args": [
+                "run",
+                "--release"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Cargo build",
+            "command": "cargo",
+            "args": [
+                "build"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        }
+    ]
+}
