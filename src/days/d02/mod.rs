@@ -9,7 +9,7 @@ struct PassRequirements<'a> {
 }
 
 impl PassRequirements<'_> {
-    fn new<'a>(line: &'a String) -> PassRequirements {
+    fn new(line: & str) -> PassRequirements {
         let parts: Vec<&str> = line.split(' ').collect();
         assert_eq!(3, parts.len());
         let mut nums = parts[0].split('-');
