@@ -18,3 +18,5 @@ syn = "1.0" #build macro
 quote = "1.0"
 
 indexmap = "1.6.1"
+
+array_tool = "1.0.3" #intesection vectors
