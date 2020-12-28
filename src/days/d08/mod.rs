@@ -1,14 +1,31 @@
-//use crate::myTest;
+pub mod console;
+use console::Console;
 
-pub static IMPLEMENTED: bool = false;
+pub static IMPLEMENTED: bool = true;
 pub static INTERACTIVE: (bool, bool) = (false, false);
+pub static ISP2: bool = true;
 
-pub fn p1(_input: &[String], _interactive: bool) -> i64 {
-    1
+pub fn p1(input: &[String], _interactive: bool) -> i64 {
+    let mut console = match Console::new(input) {
+        Ok(c) => c,
+        Err(err) => {
+            eprintln!("{}", err);
+            return 0;
+        }
+    };
+    console.solve_step1().unwrap_err()
 }
 
-pub fn p2(_input: &[String], _interactive: bool) -> i64 {
-    1
+pub fn p2(input: &[String], _interactive: bool) -> i64 {
+    let mut console = match Console::new(input) {
+        Ok(c) => c,
+        Err(err) => {
+            eprintln!("{}", err);
+            return 0;
+        }
+    };
+    console.solve_step_2()
 }
 
-//myTest!();
+use crate::myTest;
+myTest!();
