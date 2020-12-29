@@ -24,6 +24,7 @@ pub fn file_to_lines(filename: &str) -> Result<Vec<String>, &str> {
     Err("invalid filename")
 }
 
+#[allow(dead_code)]
 pub fn test_files(prefix: &str, method: impl Fn(&[String], bool) -> i64, mod_path: &str) {
     let mut current_path = String::from(env::current_dir().unwrap().to_str().unwrap());
     let mod_slices: Vec<&str> = mod_path.split("::").collect();

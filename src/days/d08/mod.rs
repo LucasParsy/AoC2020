@@ -3,7 +3,6 @@ use console::Console;
 
 pub static IMPLEMENTED: bool = true;
 pub static INTERACTIVE: (bool, bool) = (false, false);
-pub static ISP2: bool = true;
 
 pub fn p1(input: &[String], _interactive: bool) -> i64 {
     let mut console = match Console::new(input) {
