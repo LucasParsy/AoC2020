@@ -1,6 +1,6 @@
 extern crate proc_macro;
 use proc_macro::TokenStream;
-use quote::{TokenStreamExt, format_ident, quote};
+use quote::{format_ident, quote, TokenStreamExt};
 
 #[proc_macro]
 pub fn gen_pub_mod(_item: TokenStream) -> TokenStream {
@@ -10,8 +10,9 @@ pub fn gen_pub_mod(_item: TokenStream) -> TokenStream {
         let num_str = format!("{:02}", num);
         let name = format_ident!("d{}", num_str);
         quote! {
-            pub mod #name;
-    }}));
+                pub mod #name;
+        }
+    }));
     //println!("{}", q.to_string());
     q.into()
 }
