@@ -13,6 +13,8 @@ proc-macro = true
 
 [dependencies]
 clap = {version = "2.33", features = ["yaml"]} #arg parse
+rayon = "1.5.0" #multithread tests and running all days
+#either = "1.6.1" #condition either iterator or reverse it. but unused with refactor
 
 syn = "1.0" #build macro
 quote = "1.0"

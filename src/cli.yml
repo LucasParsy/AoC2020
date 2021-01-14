@@ -2,6 +2,13 @@ name: Advent of Code 2020
 version: "0.01"
 about: My advent of code for 2020
 author: Lucas P. <lucas.parsy@epitech.eu>
+args:
+    - threads:
+        short: t
+        long: threads
+        help: number of threads to run the "all" command on
+        takes_value: true        
+
 subcommands:
     - all:
         about: execute all exercises
