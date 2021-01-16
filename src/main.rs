@@ -52,7 +52,7 @@ fn call_day_threaded(t: (&u8, &DayInfo), tx: &mpsc::Sender<DayResult>) {
 
 fn print_day(rec: &DayResult) {
     println!("day {:02} part 1: {}", rec.0, rec.1);
-    println!("day {:02} part 1: {}", rec.0, rec.2);
+    println!("day {:02} part 2: {}", rec.0, rec.2);
 }
 
 fn single_thread_call_all(m: &IndexMap<u8, DayInfo>) {
