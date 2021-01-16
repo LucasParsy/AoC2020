@@ -24,3 +24,5 @@ indexmap = "1.6.1"
 array_tool = "1.0.3" #intesection vectors
 itertools = "0.10.0" # combinations
 petgraph = "0.5.1" #graph with cross-referencing objects
+
+nom = "6.0.1" #advanced string parser
