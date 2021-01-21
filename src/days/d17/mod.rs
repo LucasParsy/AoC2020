@@ -1,7 +1,11 @@
+pub mod render_3d;
+pub mod mesh_animations;
+
 pub static IMPLEMENTED: bool = true;
-pub static INTERACTIVE: (bool, bool) = (false, false);
+pub static INTERACTIVE: (bool, bool) = (true, false);
 
 type World = [Vec<Vec<Vec<(bool, bool)>>>];
+type WorldVec = Vec<Vec<Vec<Vec<(bool, bool)>>>>;
 
 fn _debug_print_world(world: &World, levels: usize, w_levels: usize) {
     println!("step {}\n", levels);
@@ -39,7 +43,7 @@ fn count_active_3d(world: &[Vec<Vec<(bool, bool)>>]) -> usize {
         * 2
 }
 
-fn count_active(world: &World) -> i64 {
+pub fn count_active(world: &World) -> i64 {
     let orig = count_active_3d(&world.first().unwrap());
     (orig
         + world
@@ -109,7 +113,7 @@ fn check_cell(
     }
 }
 
-fn update_cells(world: &mut World) {
+pub fn update_cells(world: &mut World) {
     for elem in world
         .iter_mut()
         .flatten()
@@ -131,12 +135,15 @@ fn initialize_2d_world(start: usize, input: &[String], m: &mut Vec<Vec<(bool, bo
     }
 }
 
-fn solve_p1_and_p2(input: &[String], is_p1: bool, _interactive: bool) -> i64 {
+pub fn init_world(
+    input: &[String],
+    is_p1: bool,
+    cycles: usize,
+) -> (WorldVec, usize, usize) {
     let sx = input[0].len();
     let sy = input.len();
     assert_eq!(sx, sy);
 
-    let cycles = 6;
     let padding = (cycles + 1) * 2 + 1;
     let map_size = sx + padding;
     let flat_slice = vec![vec![(false, false); map_size]; map_size];
@@ -144,34 +151,50 @@ fn solve_p1_and_p2(input: &[String], is_p1: bool, _interactive: bool) -> i64 {
     let world_w_size = if is_p1 { 1 } else { cycles + 1 };
     let mut world = vec![three_d_world; world_w_size];
 
-    let mut start = cycles + 1;
+    let start = cycles + 1;
     initialize_2d_world(start, input, &mut world[0][0]);
-
     //_debug_print_world(&world, 0, 0);
-    for level in 1..=cycles {
-        start -= 1;
-        let w_range = if is_p1 { 0 } else { level };
-        for w in 0..=w_range {
-            for z in 0..=level {
-                for y in start..=start + sy + (level * 2) {
-                    for x in start..=start + sx + (level * 2) {
-                        check_cell(x, y, z, w, level, is_p1, &mut world);
-                    }
+    (world, start, sx)
+}
+
+pub fn step_life(world: &mut World, level: usize, start: usize, map_size: usize, is_p1: bool) {
+    let w_range = if is_p1 { 0 } else { level };
+    for w in 0..=w_range {
+        for z in 0..=level {
+            for y in start..=start + map_size + (level * 2) {
+                for x in start..=start + map_size + (level * 2) {
+                    check_cell(x, y, z, w, level, is_p1, world);
                 }
             }
         }
+    }
+}
+
+fn solve_p1_and_p2(input: &[String], is_p1: bool, interactive: bool) -> i64 {
+    if interactive && is_p1 {
+        if !cfg!(feature = "render_3d") {
+            eprintln!("feature 'render_3d' was disabled, cannot do 3D render");
+        }
+        #[cfg(feature = "render_3d")]
+        return render_3d::render::start(input);
+    }
+    let cycles = 6;
+    let (mut world, mut start, map_size) = init_world(input, is_p1, cycles);
+    for level in 1..=cycles {
+        start -= 1;
+        step_life(&mut world, level, start, map_size, is_p1);
         update_cells(&mut world);
         //_debug_print_world(&world, level, if is_p1 { 0 } else { level });
     }
     count_active(&world)
 }
 
-pub fn p1(input: &[String], _interactive: bool) -> i64 {
-    solve_p1_and_p2(input, true, _interactive)
+pub fn p1(input: &[String], interactive: bool) -> i64 {
+    solve_p1_and_p2(input, true, interactive)
 }
 
-pub fn p2(input: &[String], _interactive: bool) -> i64 {
-    solve_p1_and_p2(input, false, _interactive)
+pub fn p2(input: &[String], interactive: bool) -> i64 {
+    solve_p1_and_p2(input, false, interactive)
 }
 
 use crate::myTest;
