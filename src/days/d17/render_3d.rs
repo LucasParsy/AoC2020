@@ -94,7 +94,7 @@ pub mod render {
         pub fn new(input: &[String]) -> Self {
             let cycles = 20;
 
-            let (world, start, map_size) = crate::day::init_world(input, false, cycles);
+            let (world, start, map_size) = crate::days::d17::init_world(input, false, cycles);
             let center = (world[0][0].len() / 2) as f32;
             let map: CubeMap = HashMap::new();
 
@@ -197,7 +197,7 @@ pub mod render {
         fn step_cycle(&mut self) {
             self.start -= 1;
             self.timer_levels = Duration::new(0, 0);
-            crate::day::step_life(&mut self.world, self.level, self.start, self.map_size, true);
+            crate::days::d17::step_life(&mut self.world, self.level, self.start, self.map_size, true);
             self.update_display_state();
             super::super::update_cells(&mut self.world);
             let count_cubes = super::super::count_active(&self.world);
