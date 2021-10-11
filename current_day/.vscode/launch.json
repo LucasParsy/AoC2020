@@ -7,12 +7,12 @@
         "request": "launch",
         "name": "Launch",
         "args": [],
-        "program": "${workspaceFolder}/target/debug/aoc_2020",
+        "program": "${workspaceFolder}/target/debug/current_day",
         "windows": {
           "name": "Launch",
           "type": "lldb",
           "request": "launch",  
-          "program": "${workspaceFolder}/target/debug/aoc_2020.exe",
+          "program": "${workspaceFolder}/target/debug/current_day.exe",
           "sourceMap": {
             "/rustc/*": "${env:HOME}/.rustup/toolchains/stable-x86_64-pc-windows-msvc/lib/rustlib/src/rust"
           }

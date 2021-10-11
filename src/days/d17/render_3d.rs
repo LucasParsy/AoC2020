@@ -72,7 +72,7 @@ pub mod render {
             rectangle.set_local_rotation(UnitQuaternion::new(
                 Vector3::x() * std::f32::consts::FRAC_PI_2,
             ));
-            let path = Path::new("./checker.png");
+            let path = Path::new("./resources/checker.png");
             match path.exists() {
                 true => rectangle.set_texture_from_file(path, "checker"),
                 false => rectangle.set_color(0.0, 0.058, 0.521),

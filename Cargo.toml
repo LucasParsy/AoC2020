@@ -13,6 +13,7 @@ default = ["render_3d"]
 render_3d = ["kiss3d"]
 
 [lib]
+name="aoc_2020_lib"
 proc-macro = true
 
 [dependencies]

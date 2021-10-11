@@ -12,7 +12,7 @@ use days::common::file_to_lines;
 
 mod days {
     pub mod common;
-    aoc_2020::gen_pub_mod!(); //pub mod d01...d25
+    aoc_2020_lib::gen_pub_mod!(); //pub mod d01...d25
 }
 
 type ExoMethod = fn(_input: &[String], _interactive: bool) -> i64;
@@ -30,7 +30,7 @@ type ModuleMap = IndexMap<u8, DayInfo>;
 
 fn map_modules() -> ModuleMap {
     let mut res: ModuleMap = IndexMap::new();
-    aoc_2020::gen_module_map!();
+    aoc_2020_lib::gen_module_map!();
     res
 }
 
