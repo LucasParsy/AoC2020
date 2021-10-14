@@ -116,7 +116,7 @@ fn build_graph(
                 let index = table.add_node(Seat::new(pos));
 
                 for dir in DIRECTIONS.iter() {
-                    checker_method(&index, &dir, &pos, map_size, &mut table, &chairs_map);
+                    checker_method(&index, dir, &pos, map_size, &mut table, &chairs_map);
                 }
                 chairs_map.insert(pos, index);
             }

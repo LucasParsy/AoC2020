@@ -47,7 +47,7 @@ fn get_bags_colors<'a>(
         }
     }
     if !next_call.is_empty() {
-        res += get_bags_colors(&bags, &next_call, visited)
+        res += get_bags_colors(bags, &next_call, visited)
     }
     res
 }
@@ -72,7 +72,7 @@ fn get_nested_bags(bags: &Bags, current: &str) -> i64 {
 
 pub fn p2(input: &[String], _interactive: bool) -> i64 {
     let bags = generate_map_bags(input);
-    get_nested_bags(&bags, &"shiny gold")
+    get_nested_bags(&bags, "shiny gold")
 }
 
 use crate::myTest;

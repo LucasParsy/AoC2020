@@ -72,11 +72,11 @@ fn parse_hair_color(passport: &Passport) -> Result<(), ()> {
 }
 
 fn parse_passport(pass: &Passport) -> Result<(), ()> {
-    parse_date(&pass, "byr", 1920, 2002)?;
-    parse_date(&pass, "iyr", 2010, 2020)?;
-    parse_date(&pass, "eyr", 2020, 2030)?;
-    parse_height(&pass)?;
-    parse_hair_color(&pass)?;
+    parse_date(pass, "byr", 1920, 2002)?;
+    parse_date(pass, "iyr", 2010, 2020)?;
+    parse_date(pass, "eyr", 2020, 2030)?;
+    parse_height(pass)?;
+    parse_hair_color(pass)?;
 
     let eye_colors = vec!["amb", "blu", "brn", "gry", "grn", "hzl", "oth"];
     if !eye_colors.contains(pass.get("ecl").unwrap()) {

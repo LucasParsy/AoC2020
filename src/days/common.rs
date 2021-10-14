@@ -9,13 +9,11 @@ pub fn file_to_lines(filename: &str) -> Result<Vec<String>, &str> {
     if filename.starts_with('/') {
         path = filename.into();
     } else {
-        let base_dir = String::from(
-            env::current_exe()
-                .unwrap()
-                .to_str()
-                .unwrap()
-                .replace("\\", "/"),
-        );
+        let base_dir = env::current_exe()
+            .unwrap()
+            .to_str()
+            .unwrap()
+            .replace("\\", "/");
         let base_dir: Vec<&str> = base_dir.split('/').collect();
         let base_dir = base_dir[0..base_dir.len() - 3].join("/");
         path = base_dir + "/src/" + filename;

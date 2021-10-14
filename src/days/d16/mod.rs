@@ -121,7 +121,7 @@ pub fn p2(input: &[String], _interactive: bool) -> i64 {
 
     for (index, valids) in valid_tickets.iter().enumerate() {
         for info in ticket_info.iter_mut() {
-            if valids.iter().all(|v| ticket_value_is_valid(&info, *v)) {
+            if valids.iter().all(|v| ticket_value_is_valid(info, *v)) {
                 info.3.push(index as u64);
             }
         }

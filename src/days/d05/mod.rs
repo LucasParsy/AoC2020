@@ -15,11 +15,11 @@ pub fn get_boarding_id(boarding: &str) -> i64 {
 }
 
 pub fn p1(input: &[String], _interactive: bool) -> i64 {
-    input.iter().map(|l| get_boarding_id(&l)).max().unwrap()
+    input.iter().map(|l| get_boarding_id(l)).max().unwrap()
 }
 
 pub fn p2(input: &[String], _interactive: bool) -> i64 {
-    let ids: Vec<i64> = input.iter().map(|l| get_boarding_id(&l)).collect();
+    let ids: Vec<i64> = input.iter().map(|l| get_boarding_id(l)).collect();
     for elem in ids.iter() {
         if ids.contains(&(elem + 2)) && !ids.contains(&(elem + 1)) {
             //println!("{}", elem + 1);

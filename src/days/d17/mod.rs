@@ -44,7 +44,7 @@ fn count_active_3d(world: &[Vec<Vec<(bool, bool)>>]) -> usize {
 }
 
 pub fn count_active(world: &World) -> i64 {
-    let orig = count_active_3d(&world.first().unwrap());
+    let orig = count_active_3d(world.first().unwrap());
     (orig
         + world
             .iter()
