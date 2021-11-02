@@ -14,7 +14,7 @@
           "request": "launch",  
           "program": "${workspaceFolder}/target/debug/aoc_2020.exe",
           "sourceMap": {
-            "/rustc/*": "${env:HOME}/.rustup/toolchains/stable-x86_64-pc-windows-msvc/lib/rustlib/src/rust"
+            "/rustc/*": "${env:UserProfile}\\.rustup\\toolchains\\stable-x86_64-pc-windows-msvc\\lib\\rustlib\\src\\rust"
           }
   
         },

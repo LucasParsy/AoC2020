@@ -6,7 +6,7 @@ use std::{
 
 pub fn file_to_lines(filename: &str) -> Result<Vec<String>, &str> {
     let path: String;
-    if filename.starts_with('/') {
+    if filename.starts_with('/') || filename.starts_with("C:\\") {
         path = filename.into();
     } else {
         let base_dir = env::current_exe()

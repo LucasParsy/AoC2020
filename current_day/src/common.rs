@@ -6,10 +6,10 @@ use std::{
 
 pub fn file_to_lines(filename: &str) -> Result<Vec<String>, &str> {
     let path: String;
-    if filename.starts_with('/') {
+    if filename.starts_with('/') || filename.starts_with("C:\\") {
         path = filename.into();
     } else {
-        let base_dir = String::from(env::current_exe().unwrap().to_str().unwrap().replace("\\", "/"));
+        let base_dir = env::current_exe().unwrap().to_str().unwrap().replace("\\", "/");
         let base_dir: Vec<&str> = base_dir.split('/').collect();
         let base_dir = base_dir[0..base_dir.len() - 3].join("/");
         path = base_dir  + "/" + filename;
@@ -29,7 +29,7 @@ pub fn test_files(prefix: &str, method: impl Fn(&[String], bool) -> i64, mod_pat
     let mut current_path = String::from(env::current_dir().unwrap().to_str().unwrap());
     let mod_slices: Vec<&str> = mod_path.split("::").collect();
     if mod_slices.len() >= 3 {
-        current_path = format!("{}/src/{}/tests", current_path, &mod_slices[1..3].join("/"));
+        current_path = format!("{}/src/{}/tests", current_path, &mod_slices[1..2].join("/"));
     }
 
     //println!("{}", current_path);
