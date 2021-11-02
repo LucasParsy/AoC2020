@@ -13,7 +13,7 @@ fn generate_map_bags(input: &[String]) -> Bags {
         let name: String = splitted[0..2].join(" ");
         let num_elems = (splitted.len() - 4) / 4;
         let mut children = Vec::new();
-        for i in 1..num_elems + 1 {
+        for i in 1..=num_elems {
             let num_child: i64 = splitted[i * 4].parse().unwrap();
             let name_index = 1 + i * 4;
             let bags_child = splitted[name_index..name_index + 2].join(" ");

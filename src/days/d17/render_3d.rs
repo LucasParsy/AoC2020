@@ -92,7 +92,7 @@ pub mod render {
         }
 
         pub fn new(input: &[String]) -> Self {
-            let cycles = 20;
+            let cycles = 50;
 
             let (world, start, map_size) = crate::days::d17::init_world(input, false, cycles);
             let center = (world[0][0].len() / 2) as f32;

@@ -13,9 +13,7 @@ pub fn step_slope(input: &[String], right: usize, down: usize) -> i64 {
         }
 
         index += right;
-        for _ in 0..down {
-            line = line_it.next();
-        }
+        line = line_it.nth(down-1);
     }
     res
 }

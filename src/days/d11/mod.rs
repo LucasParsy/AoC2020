@@ -6,12 +6,7 @@ use petgraph::graph::{Graph, NodeIndex};
 pub static IMPLEMENTED: bool = true;
 pub static INTERACTIVE: (bool, bool) = (false, false);
 
-const DIRECTIONS: [(i32, i32); 4] = [
-    (-1, 1),
-    (-1, 0),
-    (0, -1),
-    (-1, -1),
-];
+const DIRECTIONS: [(i32, i32); 4] = [(-1, 1), (-1, 0), (0, -1), (-1, -1)];
 
 fn print_map(is_debug: bool, step: usize, sx: i32, sy: i32, chairs: &ChairMap, graph: &ChairGraph) {
     if !is_debug {
@@ -154,27 +149,28 @@ fn step_life(limit_flip: usize, table: &mut ChairGraph) -> bool {
     modified
 }
 
-pub fn p1(input: &[String], _interactive: bool) -> i64 {
+fn find_occupied_seats(input: &[String], limit_flip: usize, checker_method: &NodeChecker) -> i64 {
+    let is_debug = false;
     let sx = input[0].len() as i32;
     let sy = input.len() as i32;
-    let is_debug = false;
 
-    let (mut table, chairs_map) = build_graph(input, &(sx, sy), &check_neighbor_p1);
+    let (mut table, chairs_map) = build_graph(input, &(sx, sy), checker_method);
     let mut count: usize = 0;
     print_map(is_debug, count, sx, sy, &chairs_map, &table);
-    while step_life(4, &mut table) {
+    while step_life(limit_flip, &mut table) {
         count += 1;
         print_map(is_debug, count, sx, sy, &chairs_map, &table);
     }
     print_map(is_debug, count, sx, sy, &chairs_map, &table);
-    table.node_weights_mut().filter(|x| x.occupied).count() as i64
+    table.node_weights().filter(|x| x.occupied).count() as i64
+}
+
+pub fn p1(input: &[String], _interactive: bool) -> i64 {
+    find_occupied_seats(input, 4, &check_neighbor_p1)
 }
 
 pub fn p2(input: &[String], _interactive: bool) -> i64 {
-    let map_size = (input[0].len() as i32, input.len() as i32);
-    let (mut table, _) = build_graph(input, &map_size, &check_neighbor_p2);
-    while step_life(5, &mut table) {}
-    table.node_weights_mut().filter(|x| x.occupied).count() as i64
+    find_occupied_seats(input,5, &check_neighbor_p2)
 }
 
 use crate::myTest;
