@@ -1,0 +1,7 @@
+format input: 
+    1 + (2 * 3) + (4 * (5 + 6))
+
+() ou expr
+    num , oper*
+        
+        oper = operator , () ou num
