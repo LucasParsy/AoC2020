@@ -138,7 +138,7 @@ fn list_interactive(m: &ModuleMap) {
     for t in m.into_iter() {
         if t.1.interactive.0 || t.1.interactive.1 {
             println!(
-                "day {:02} p1:{} p2:{}",
+                "day {:02} p1: {}, p2: {}",
                 *t.0, t.1.interactive.0, t.1.interactive.1
             );
         }

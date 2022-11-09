@@ -13,3 +13,4 @@ Cargo.lock
 **/*.rs.bk
 *~
 playground/
+resources/desktop.files.json

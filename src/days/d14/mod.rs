@@ -94,7 +94,7 @@ pub fn p2(input: &[String], _interactive: bool) -> i64 {
             }
 
             //eprintln!("val {} original index {}", num, index);
-            mem.insert(index as usize, num);
+            mem.insert(index, num);
             for i in 1..=floating.len() {
                 for elem in floating.iter().combinations(i) {
                     let npos = index + (elem.iter().copied().sum::<i64>()) as usize;
@@ -102,7 +102,6 @@ pub fn p2(input: &[String], _interactive: bool) -> i64 {
                     mem.insert(npos as usize, num);
                 }
             }
-            mem.insert(index, num);
         }
     }
 
